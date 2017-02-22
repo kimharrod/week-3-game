@@ -50,9 +50,9 @@
 
 			</div>
 
-	    	<div class="row top-buffer">
+	    	<div class="row top-buffer" id="NotMatching">
 
-				<p class="col-md-12">Show all the letters that have been guessed already.</p>
+				<p class="col-md-12">Letter guesses that aren't a match will appear here.</p>
 
 			</div>
 			
@@ -105,8 +105,11 @@
 
     var wordLength = gameFlower.length;
    
-    
-    var blankSpaces = "";
+   	var blankSpaces = "";
+
+   	var notLetterMatches = "";
+
+   
 
     for (var i = 0; i < wordLength; i++) {
     	blankSpaces += "_";
@@ -149,17 +152,23 @@
 			for (var i = 0; i < matches.length; i++) {
 				blankSpaces = setCharAt(blankSpaces,matches[i],letterGuess);
 
-
 			}
 
 			document.querySelector("#FlowerName").innerHTML = blankSpaces;
 
 
+				if (matches.length === 0) {
+					notLetterMatches += letterGuess + " ";
+					console.log(letterGuess);
+					
+				}
+
+				document.querySelector("#NotMatching").innerHTML = notLetterMatches;
+				console.log(notLetterMatches);
+
 	 }
 
-	 // else {
-	 //    			console.log("Not a match. Guess again.");
-	 //    		}
+	
 
    		 
 	</script>

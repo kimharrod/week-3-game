@@ -50,6 +50,12 @@
 
 			</div>
 
+			<div class="row top-buffer" id="WinMessage">
+
+				<p class="col-md-12">Incorrect letter guesses:</p>
+
+			</div>
+
 	    	<div class="row top-buffer" id="NotMatching">
 
 				<p class="col-md-12">Letter guesses that aren't a match will appear here.</p>
@@ -109,7 +115,7 @@
 
    	var notLetterMatches = "";
 
-   
+   	var badGuessCount = 0;
 
     for (var i = 0; i < wordLength; i++) {
     	blankSpaces += "_";
@@ -160,11 +166,25 @@
 				if (matches.length === 0) {
 					notLetterMatches += letterGuess + " ";
 					console.log(letterGuess);
+					badGuessCount++;
+					console.log(badGuessCount);
 					
 				}
 
 				document.querySelector("#NotMatching").innerHTML = notLetterMatches;
 				console.log(notLetterMatches);
+
+
+				if (blankSpaces === gameFlower) {
+					document.querySelector("#WinMessage").innerHTML = "Yay! You guessed the flower!";
+					console.log("You won!");
+					
+				}
+
+				if (badGuessCount === 7) {
+					document.querySelector("#WinMessage").innerHTML = "Sorry, your guesses are up.<br>The flower was " + gameFlower + ".";
+					console.log("You lost.");
+				}
 
 	 }
 

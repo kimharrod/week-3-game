@@ -1,3 +1,16 @@
+body  {
+	background-image: url(../images/FlowerBackground.png);
+	background-size: cover;
+	height: 100%;
+}
+
+body .jumbotron {
+	background-image: url(../images/FlowerBackground.png);
+	background-size: cover;
+	height: 100%;
+}
+
+
 .jumbotron h1, p {
 	
 	font-family: 'Sniglet', cursive;

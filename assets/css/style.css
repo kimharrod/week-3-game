@@ -11,10 +11,28 @@
 
 .col-md-12 {	
 	box-sizing: border-box;
+
+	color: rgb(51, 51, 51);
+
+	display: block;
+
+	font-family: Sniglet, cursive;
+	
+	font-size: 50px;
+
+	font-weight: 500;
+	
+	line-height: 100px;
+}
+
+#FlowerName {	
+	box-sizing: border-box;
 	
 	color: rgb(51, 51, 51);
 
 	display: block;
+
+	margin-left: 1%;
 
 	font-family: Sniglet, cursive;
 	

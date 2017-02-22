@@ -38,13 +38,15 @@
 
 	</div>
 
+
+
 	<div class="row">
 
 		<div class="col-md-8">
 
-			<div class="row top-buffer">
+			<div class="row top-buffer" id="FlowerName">
 
-				<p class="col-md-12">D _ _ _ _ D _ _</p>
+				<p class="col-md-12">test</p>
 
 			</div>
 
@@ -87,6 +89,35 @@
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+
+
+	<script type = "text/javascript">
+
+	// Array of possible flowers //
+	var flower = ["tulip", "peony", "lily", "sunflower", "daisy", "daffodil", "rose", "lilac", "hyacinth", "marigold", "orchid", "lavender", "buttercup", "hydrangea", "coneflower"];
+
+
+ 	// Sets the gameFlower variable equal to a random choice from the flower array. //
+    var gameFlower = flower[Math.floor(Math.random() * flower.length)];
+
+    //Query the number of letters in the variable gameFlower and display the same number of blank spaces.//
+
+    var wordLength = gameFlower.length;
+   
+    
+    var blankSpaces = "";
+
+    for (var i = 0; i < wordLength; i++) {
+    	blankSpaces += "_ ";
+    } 
+
+
+    document.querySelector("#FlowerName").innerHTML = blankSpaces;
+
+    // var FlowerName = document.getElementById("FlowerName");
+    // 	FlowerName.innerhtml = 	blankSpaces;
+
+	</script>
 
 </body>
 </html>

@@ -18,11 +18,11 @@
 
 	font-family: Sniglet, cursive;
 	
-	font-size: 50px;
+	font-size: 30px;
 
-	font-weight: 500;
+	font-weight: 300;
 	
-	line-height: 100px;
+	line-height: 60px;
 }
 
 #FlowerName {	
@@ -52,11 +52,11 @@
 
 	font-family: Sniglet, cursive;
 	
-	font-size: 40px;
+	font-size: 30px;
 
-	font-weight: 400;
+	font-weight: 300;
 	
-	line-height: 80px;
+	line-height: 60px;
 }
 
 #NotMatching {	
@@ -70,7 +70,7 @@
 	
 	font-size: 30px;
 
-	font-weight: 400;
+	font-weight: 300;
 	
-	line-height: 40px;
+	line-height: 60px;
 }

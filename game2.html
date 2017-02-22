@@ -99,6 +99,7 @@
 
  	// Sets the gameFlower variable equal to a random choice from the flower array. //
     var gameFlower = flower[Math.floor(Math.random() * flower.length)];
+    console.log(gameFlower);
 
     //Query the number of letters in the variable gameFlower and display the same number of blank spaces.//
 
@@ -108,15 +109,59 @@
     var blankSpaces = "";
 
     for (var i = 0; i < wordLength; i++) {
-    	blankSpaces += "_ ";
+    	blankSpaces += "_";
     } 
-
 
     document.querySelector("#FlowerName").innerHTML = blankSpaces;
 
-    // var FlowerName = document.getElementById("FlowerName");
-    // 	FlowerName.innerhtml = 	blankSpaces;
+   
+   // Function that substitutes a character at a position in a string
 
+   		
+
+   		function setCharAt(str,index,chr) {
+   		 	if(index > str.length-1) return str;
+   		 	return str.substr(0,index) + chr + str.substr(index+1);
+   		 }
+
+    // When the user presses a key to guess a letter, run the following function...
+
+    document.onkeyup = function(event) {
+    	console.log(event.key);
+
+        // Determine which key was pressed
+        var letterGuess = event.key;
+      	var matches = [];
+
+	        for (var i = 0; i < wordLength; i++) {
+	        		
+	    		if (letterGuess === gameFlower.charAt(i)) { 
+	    			matches.push(i);
+	    		} 
+	    				
+    		}	
+
+    		console.log(matches);
+    		console.log(matches.length);
+
+			
+
+			for (var i = 0; i < matches.length; i++) {
+				blankSpaces = setCharAt(blankSpaces,matches[i],letterGuess);
+
+
+			}
+
+			document.querySelector("#FlowerName").innerHTML = blankSpaces;
+
+
+	 }
+
+	 // else {
+	 //    			console.log("Not a match. Guess again.");
+	 //    		}
+
+   		 
 	</script>
 
 </body>

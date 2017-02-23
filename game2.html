@@ -30,7 +30,7 @@
 
 		<div class="col-md-12">
 
-				<div class="page-header">
+				<div>
 		    	<h1>What's the name of my flower?</h1>	    	
 		    	</div>
 	    
@@ -58,7 +58,7 @@
 
 	    	<div class="row top-buffer" id="NotMatching">
 
-				<p class="col-md-12">Letter guesses that don't match will appear here.</p>
+				<p class="col-md-12">Guess a letter to start!</p>
 
 			</div>
 			
@@ -88,6 +88,8 @@
 
 	<script type = "text/javascript">
 
+		
+
 	// Array of possible flowers //
 	var flower = ["tulip", "peony", "lily", "sunflower", "daisy", "daffodil", "rose", "lilac", "hyacinth", "marigold", "orchid", "lavender", "buttercup", "hydrangea", "coneflower"];
 
@@ -105,6 +107,8 @@
    	var notLetterMatches = "";
 
    	var badGuessCount = 0;
+
+   	var gameOver = 1;
 
     for (var i = 0; i < wordLength; i++) {
     	blankSpaces += "_";
@@ -140,6 +144,12 @@
     document.onkeyup = function(event) {
     	console.log(event.key);
 
+
+
+    	if (gameOver === 0) {
+    		return;
+    	}
+
         // Determine which key was pressed
 
         var letterGuess = event.key;
@@ -169,6 +179,7 @@
 
 			document.querySelector("#FlowerName").innerHTML = blankSpaces;
 
+			//If the guessed letter is not in the flower name, then it adds it to the list of incorrect guesses and increments the bad guess count by 1
 
 				if (matches.length === 0) {
 					notLetterMatches += letterGuess + " ";
@@ -189,6 +200,7 @@
 					console.log(wins);
 					console.log("You won!");
 					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='location.reload()'>Play Again</a></p>";
+					gameOver = 0;
 					
 				}
 
@@ -199,8 +211,10 @@
 					console.log(losses);
 					console.log("You lost.");
 					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='location.reload()'>Play Again</a></p>";
+					gameOver = 0;
 				}
 
+ 
 	 }
 
 	

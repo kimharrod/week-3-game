@@ -88,56 +88,104 @@
 
 	<script type = "text/javascript">
 
+
+		// Array of possible flowers //
+		var flower = ["tulip", "peony", "lily", "sunflower", "daisy", "daffodil", "rose", "lilac", "hyacinth", "marigold", "orchid", "lavender", "buttercup", "hydrangea", "coneflower"];
+
 		
 
-	// Array of possible flowers //
-	var flower = ["tulip", "peony", "lily", "sunflower", "daisy", "daffodil", "rose", "lilac", "hyacinth", "marigold", "orchid", "lavender", "buttercup", "hydrangea", "coneflower"];
+	 	// Sets the gameFlower variable equal to a random choice from the flower array. //
+	    var gameFlower = flower[Math.floor(Math.random() * flower.length)];
+	    console.log(gameFlower);
 
 
- 	// Sets the gameFlower variable equal to a random choice from the flower array. //
-    var gameFlower = flower[Math.floor(Math.random() * flower.length)];
-    console.log(gameFlower);
+	    var wordLength = gameFlower.length;
+	   
+	   	var blankSpaces = "";
 
-    //Query the number of letters in the variable gameFlower and display the same number of blank spaces.//
+	   	var notLetterMatches = "";
 
-    var wordLength = gameFlower.length;
+	   	var badGuessCount = 0;
+
+	   	var gameOver = 1;
+
+
+	    //Query the number of letters in the variable gameFlower and display the same number of blank spaces.//
+	   	//Insert one blank space/underscore for each letter in the game flower.
+
+	    for (var i = 0; i < wordLength; i++) {
+	    	blankSpaces += "_";
+	    } 
+
+	    document.querySelector("#FlowerName").innerHTML = blankSpaces;
+
+		// Creating wins and losses variable and a counter that saves values between page reloads
+
+		var wins = localStorage.getItem('wins_counter');
+	 
+		if (wins === null) {
+		    wins = 0;
+		}
+
+	  
+		var losses = localStorage.getItem('losses_counter');
+	 
+		if (losses === null) {
+		    losses = 0;
+		}
    
-   	var blankSpaces = "";
 
-   	var notLetterMatches = "";
 
-   	var badGuessCount = 0;
-
-   	var gameOver = 1;
-
-    for (var i = 0; i < wordLength; i++) {
-    	blankSpaces += "_";
-    } 
-
-    document.querySelector("#FlowerName").innerHTML = blankSpaces;
-
-	// Creating wins and losses variable and a counter that saves values between page reloads
-
-	var wins = localStorage.getItem('wins_counter');
- 
-	if (wins === null) {
-	    wins = 0;
-	}
-
-  
-	var losses = localStorage.getItem('losses_counter');
- 
-	if (losses === null) {
-	    losses = 0;
-	}
-   
-   // Function that substitutes a character at a position in a string
+   	//Function that substitutes a character at a position in a string
 	
-
 	function setCharAt(str,index,chr) {
 	 	if(index > str.length-1) return str;
 	 	return str.substr(0,index) + chr + str.substr(index+1);
 	 }
+
+	 //Function that reinitializes variables at game restart, except for win/loss counter
+
+	 function restart () {
+
+		gameFlower = flower[Math.floor(Math.random() * flower.length)];
+	    console.log(gameFlower);
+
+	    wordLength = gameFlower.length;
+	   
+	   	blankSpaces = "";
+
+	   	notLetterMatches = "";
+
+	   	badGuessCount = 0;
+
+	   	gameOver = 1;
+
+
+	    for (var i = 0; i < wordLength; i++) {
+	    	blankSpaces += "_";
+	    } 
+
+	    document.querySelector("#FlowerName").innerHTML = blankSpaces;
+
+
+		wins = localStorage.getItem('wins_counter');
+	 
+		if (wins === null) {
+		    wins = 0;
+		}
+
+	  
+		losses = localStorage.getItem('losses_counter');
+	 
+		if (losses === null) {
+		    losses = 0;
+		}
+
+		document.querySelector("#NotMatching").innerHTML = "Press a letter to start.";
+		document.querySelector("#WinMessage").innerHTML = "";
+
+		}
+
 
     // When the user presses a key to guess a letter, run the following function...
 
@@ -199,7 +247,7 @@
 					localStorage.setItem("wins_counter", wins); 
 					console.log(wins);
 					console.log("You won!");
-					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='location.reload()'>Play Again</a></p>";
+					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='restart()'>Play Again</a></p>";
 					gameOver = 0;
 					
 				}
@@ -210,11 +258,11 @@
 					localStorage.setItem("losses_counter", losses); 
 					console.log(losses);
 					console.log("You lost.");
-					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='location.reload()'>Play Again</a></p>";
+					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='restart()'>Play Again</a></p>";
 					gameOver = 0;
 				}
 
- 
+
 	 }
 
 	

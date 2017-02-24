@@ -1,10 +1,12 @@
 body  {
+
 	background-image: url(../images/Flower11.png);
 	background-size: cover;
 	height: 100%;
 }
 
 body .jumbotron {
+
 	background-image: url(../images/Flower11.png);
 	background-size: cover;
 	height: 100%;
@@ -22,7 +24,8 @@ body .jumbotron {
 	margin-top: 30px; 
 }
 
-.col-md-12 {	
+.col-md-12 p {
+
 	box-sizing: border-box;
 
 	color: rgb(51, 51, 51);
@@ -38,9 +41,8 @@ body .jumbotron {
 	line-height: 60px;
 }
 
+#FlowerName {
 
-
-#FlowerName {	
 	box-sizing: border-box;
 	
 	color: rgb(51, 51, 51);
@@ -58,7 +60,8 @@ body .jumbotron {
 	line-height: 100px;
 }
 
-#WinMessage {	
+#WinMessage {
+
 	box-sizing: border-box;
 	
 	color: rgb(51, 51, 51);
@@ -77,6 +80,7 @@ body .jumbotron {
 }
 
 #NotMatching {	
+
 	box-sizing: border-box;
 	
 	color: rgb(51, 51, 51);

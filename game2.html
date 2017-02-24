@@ -117,6 +117,10 @@
 	    	blankSpaces += "_";
 	    } 
 
+	    
+	    //On landing at game play page, load the blank spaces and the no-face flower image
+
+	    document.body.style.backgroundImage = "url(assets/images/flower0.png)";
 	    document.querySelector("#FlowerName").innerHTML = blankSpaces;
 
 		// Creating wins and losses variable and a counter that saves values between page reloads
@@ -146,6 +150,8 @@
 	 //Function that reinitializes variables at game restart, except for win/loss counter
 
 	 function restart () {
+
+		document.body.style.backgroundImage = "url(assets/images/flower0.png)";
 
 		gameFlower = flower[Math.floor(Math.random() * flower.length)];
 	    console.log(gameFlower);
@@ -240,7 +246,7 @@
 
 			document.querySelector("#FlowerName").innerHTML = blankSpaces;
 
-			//If the guessed letter is not in the flower name, then it adds it to the list of incorrect guesses and increments the bad guess count by 1
+			//If the guessed letter is not in the flower name, then it adds it to the list of incorrect guesses, increments the bad guess count by 1, and replaces the flower image.
 
 				if (matches.length === 0) {
 					if (notLetterMatches.indexOf(letterGuess) === -1){
@@ -248,6 +254,8 @@
 					console.log(letterGuess);
 					badGuessCount++;
 					console.log(badGuessCount);
+					var imageUrl = "url(assets/images/flower" + badGuessCount + ".png)"
+						 document.body.style.backgroundImage = imageUrl;
 					}	
 				}
 
@@ -261,6 +269,9 @@
 					console.log(wins);
 					document.querySelector("#WinMessage").innerHTML = "Yay! You guessed the flower!<br>Wins: " + wins + "    " + "Losses: " + losses;
 					console.log("You won!");
+					document.body.style.backgroundImage = "url(assets/images/flower12.png)";
+					document.body.style.backgroundImage = "url(assets/images/flower11.png)";
+					document.body.style.backgroundImage = "url(assets/images/flower10.png)";
 					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='restart()'>Play Again</a>&nbsp;&nbsp;<a href='#' class='btn btn-info btn-lg' role='button' onclick='resetCounter()'>Reset Counter</a></p>";
 					gameOver = 0;
 					
@@ -272,6 +283,8 @@
 					console.log(losses);
 					document.querySelector("#WinMessage").innerHTML = "Sorry, your guesses are up.<br>The flower was " + gameFlower + ".<br>Wins: " + wins + "    " + "Losses: " + losses;
 					console.log("You lost.");
+					document.body.style.backgroundImage = "url(assets/images/flower8.png)";
+					document.body.style.backgroundImage = "url(assets/images/flower9.png)";
 					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='restart()'>Play Again</a>&nbsp;&nbsp;<a href='#' class='btn btn-info btn-lg' role='button' onclick='resetCounter()'>Reset Counter</a></p>";
 					gameOver = 0;
 				}

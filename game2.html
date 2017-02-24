@@ -123,7 +123,8 @@
 	    document.body.style.backgroundImage = "url(assets/images/flower0.png)";
 	    document.querySelector("#FlowerName").innerHTML = blankSpaces;
 
-		// Creating wins and losses variable and a counter that saves values between page reloads
+
+		// Creating wins and losses variable and a counter that saves values between game plays
 
 		var wins = localStorage.getItem('wins_counter');
 	 
@@ -146,6 +147,7 @@
 	 	if(index > str.length-1) return str;
 	 	return str.substr(0,index) + chr + str.substr(index+1);
 	 }
+
 
 	 //Function that reinitializes variables at game restart, except for win/loss counter
 
@@ -192,6 +194,7 @@
 
 		}
 
+
 		//Function to reset counter
 
 		function resetCounter () {
@@ -206,12 +209,13 @@
 
 		}
 
+	// Main game function
     // When the user presses a key to guess a letter, run the following function...
 
     document.onkeyup = function(event) {
     	console.log(event.key);
 
-
+    	// Stops keypress function at the end of a game, until restart game button or reset counter button is pressed
 
     	if (gameOver === 0) {
     		return;
@@ -222,9 +226,10 @@
         var letterGuess = event.key;
 
         //Setting variable for letter matches
+
       	var matches = [];
 
-      
+      	//This loop finds the position of a matching letter guess and pushes the position into the matches array
 
 	        for (var i = 0; i < wordLength; i++) {
 	        		
@@ -237,31 +242,42 @@
     		console.log(matches);
     		console.log(matches.length);
 
-			
+			//Matching letters replace blank spaces as they are guessed correctly 			
 
 			for (var i = 0; i < matches.length; i++) {
 				blankSpaces = setCharAt(blankSpaces,matches[i],letterGuess);
-
 			}
+
+			//Updated blank spaces string with the correct letter guesses is rendered to the page
 
 			document.querySelector("#FlowerName").innerHTML = blankSpaces;
 
-			//If the guessed letter is not in the flower name, then it adds it to the list of incorrect guesses, increments the bad guess count by 1, and replaces the flower image.
+			//If the guessed letter is not in the flower name, then it adds it to the list of incorrect guesses
 
 				if (matches.length === 0) {
+
+					//prevents an indentical bad guess keypress from incrementing bad guess count
 					if (notLetterMatches.indexOf(letterGuess) === -1){
 					notLetterMatches += letterGuess + " ";
 					console.log(letterGuess);
+
+					//increment the bad guess count by 1
 					badGuessCount++;
 					console.log(badGuessCount);
+
+					//replace the flower image with a lost petal 
 					var imageUrl = "url(assets/images/flower" + badGuessCount + ".png)"
 						 document.body.style.backgroundImage = imageUrl;
 					}	
 				}
 
+				//Display the incorrect letter guesses on the screen
+
 				document.querySelector("#NotMatching").innerHTML = notLetterMatches;
 				console.log(notLetterMatches);
 
+
+				//If you guess all letters correctly, you win the game. Win counter increments by 1 for each win.
 
 				if (blankSpaces === gameFlower) {
 					wins++;
@@ -269,13 +285,22 @@
 					console.log(wins);
 					document.querySelector("#WinMessage").innerHTML = "Yay! You guessed the flower!<br>Wins: " + wins + "    " + "Losses: " + losses;
 					console.log("You won!");
-					document.body.style.backgroundImage = "url(assets/images/flower12.png)";
-					document.body.style.backgroundImage = "url(assets/images/flower11.png)";
+					
+					//Winning flower image is displayed
+					
 					document.body.style.backgroundImage = "url(assets/images/flower10.png)";
+					
+					//Display play again and reset counter buttons
+
 					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='restart()'>Play Again</a>&nbsp;&nbsp;<a href='#' class='btn btn-info btn-lg' role='button' onclick='resetCounter()'>Reset Counter</a></p>";
+					
+
+					//Sets a flag to designate that game is complete until the Play Again or Reset Counter button is pressed
 					gameOver = 0;
 					
 				}
+
+				//If you guess a 7th letter incorrectly, you lose the game. Lose counter increments by 1 for each loss.
 
 				if (badGuessCount === 7) {
 					losses++;
@@ -283,9 +308,16 @@
 					console.log(losses);
 					document.querySelector("#WinMessage").innerHTML = "Sorry, your guesses are up.<br>The flower was " + gameFlower + ".<br>Wins: " + wins + "    " + "Losses: " + losses;
 					console.log("You lost.");
-					document.body.style.backgroundImage = "url(assets/images/flower8.png)";
+					
+					//Losing flower image is displayed
+
 					document.body.style.backgroundImage = "url(assets/images/flower9.png)";
+					
+					//Display play again and reset counter buttons
+
 					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='restart()'>Play Again</a>&nbsp;&nbsp;<a href='#' class='btn btn-info btn-lg' role='button' onclick='resetCounter()'>Reset Counter</a></p>";
+					
+					//Sets a flag to designate that game is complete until the Play Again or Reset Counter button is pressed
 					gameOver = 0;
 				}
 

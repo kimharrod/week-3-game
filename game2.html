@@ -186,6 +186,17 @@
 
 		}
 
+		//Function to reset counter
+
+		function resetCounter () {
+			wins = 0;
+			losses = 0;
+			localStorage.setItem("wins_counter", wins);
+			localStorage.setItem("losses_counter", losses);
+
+			document.querySelector("#WinMessage").innerHTML = "<br>Wins: " + wins + "    " + "Losses: " + losses;
+
+		}
 
     // When the user presses a key to guess a letter, run the following function...
 
@@ -247,7 +258,7 @@
 					localStorage.setItem("wins_counter", wins); 
 					console.log(wins);
 					console.log("You won!");
-					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='restart()'>Play Again</a></p>";
+					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='restart()'>Play Again</a><a href='#' class='btn btn-info btn-lg' role='button' onclick='resetCounter()'>Reset Game</a></p>";
 					gameOver = 0;
 					
 				}
@@ -258,7 +269,7 @@
 					localStorage.setItem("losses_counter", losses); 
 					console.log(losses);
 					console.log("You lost.");
-					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='restart()'>Play Again</a></p>";
+					document.querySelector("#NotMatching").innerHTML = "<p><a href='#' class='btn btn-info btn-lg' role='button' onclick='restart()'>Play Again</a><a href='#' class='btn btn-info btn-lg' role='button' onclick='resetCounter()'>Reset Game</a></p>";
 					gameOver = 0;
 				}
 
